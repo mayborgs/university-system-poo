@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho_poo;
+package system_model;
 
 /**
  *
@@ -17,5 +17,5 @@ public class Trabalho_POO {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
+
 }
