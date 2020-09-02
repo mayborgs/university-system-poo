@@ -5,11 +5,15 @@
  */
 package system_model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author maayk
  */
 public abstract class Funcionario implements Cloneable {
+
     protected static final String TEC1 = "T1";
     protected static final String TEC2 = "T2";
     protected static final String EFE1 = "D1";
@@ -17,7 +21,24 @@ public abstract class Funcionario implements Cloneable {
     protected static final String EFE3 = "D3";
     protected static final String SUB1 = "S1";
     protected static final String SUB2 = "S2";
+    protected static final String FUNTEC1 = "Acessor";
+    protected static final String FUNTEC2 = "Laboratório";
+    protected static final String FUNTEC3 = "Secretário";
+    protected static final String TITDOC1 = "Graduação";
+    protected static final String TITDOC2 = "Mestrado";
+    protected static final String TITDOC3 = "Doutorado";
+    protected static final String TITDOC4 = "Livre-Docente";
+    protected static final String TITDOC5 = "Titular";
+    protected static final String DOCEFET1 = "Biológicas";
+    protected static final String DOCEFET2 = "Exatas";
+    protected static final String DOCEFET3 = "Humanas";
+    protected static final String DOCEFET4 = "Saúde";
+    protected static final int CARGASUB1 = 12;
+    protected static final int CARGASUB2 = 24;
     protected static final double SALARIO_BASE = 1500.00;
+    public Efetivo e;
+    public Substituto s;
+    public Tecnico t;
     protected String codigo;
     protected String nome;
     protected double salario;
@@ -25,14 +46,9 @@ public abstract class Funcionario implements Cloneable {
 
     public abstract double calcularSalario(String nvl);
 
-    public Funcionario() {
-
-    }
-
-    public Funcionario(String codigo, String nome, double salario, String nivel) {
+    public Funcionario(String codigo, String nome, String nivel) {
         this.codigo = codigo;
         this.nome = nome;
-        this.salario = salario;
         this.nivel = nivel;
 
     }
@@ -67,6 +83,16 @@ public abstract class Funcionario implements Cloneable {
 
     public void setNivel(String nivel) {
         this.nivel = nivel;
+    }
+
+    @Override
+    public Funcionario clone() throws CloneNotSupportedException {
+        try {
+            return (Funcionario) super.clone();
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
 }

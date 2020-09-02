@@ -16,12 +16,8 @@ public abstract class Docente extends Funcionario {
     @Override
     public abstract double calcularSalario(String nvl);
 
-    public Docente() {
-        this.titulacao = "";
-    }
-
-    public Docente(String titulacao, String nome, String codigo, double salario, String nivel) {
-        super(codigo, nome, salario, nivel);
+    public Docente(String titulacao, String nome, String codigo, String nivel) {
+        super(codigo, nome, nivel);
         this.titulacao = titulacao;
     }
 
