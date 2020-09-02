@@ -16,16 +16,16 @@ import system_model.Universidade;
 public class Database {
     
     public static final int MAX = 10000;
-    private Universidade[] vetUniversities;
-    private int countUniversity;
+    /*private Universidade[] vetUniversities;
+    private int countUniversity;*/
     private Funcionario[] vetFunctionaries;
     private int countFunctionaries;
     private Departamento[] vetDepartments;
     private int countDepartments;
     
     private Database() {
-        this.vetUniversities = new Universidade[MAX];
-        this.countUniversity = 0;
+        /*this.vetUniversities = new Universidade[MAX];
+        this.countUniversity = 0;*/
         this.vetFunctionaries = new Funcionario[MAX];
         this.countFunctionaries = 0;
         this.vetDepartments = new Departamento[MAX];
@@ -41,13 +41,13 @@ public class Database {
         
     }
     
-    public void addUniversities(Universidade u) {
+    /*public void addUniversities(Universidade u) {
         if (countUniversity < MAX) {
             vetUniversities[countUniversity] = u;
             countUniversity++;
         }
         
-    }
+    }*/
     
     public void addDepartments(Departamento d) {
         if (countDepartments < MAX) {
@@ -75,8 +75,21 @@ public class Database {
         return null;
     }
     
+    public Funcionario[] funcionarios() throws CloneNotSupportedException{
+        Funcionario funcionarios[] = new Funcionario[countFunctionaries];
+        for(int i=0; i<countFunctionaries;i++){
+            funcionarios[i] = vetFunctionaries[i].clone();
+        }
+        return funcionarios;
+    }
     
-    
+    public Departamento[] departamentos() throws CloneNotSupportedException{
+        Departamento departamentos[] = new Departamento[countDepartments];
+        for(int i=0; i<countDepartments;i++){
+            departamentos[i] = vetDepartments[i].clone();
+        }
+        return departamentos;
+    }
     
     
 }

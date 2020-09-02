@@ -31,15 +31,11 @@ public class Efetivo extends Docente {
     }
 
     /*adicionar mensagem depois talvez*/
-
-
-    public Efetivo() {
-        this.area = "";
-    }
-
-    public Efetivo(String area, String nome, String codigo, double salario, String nivel, String titulacao) {
-        super(titulacao, nome, codigo, salario, nivel);
+    public Efetivo(String area, String nome, String codigo, String nivel, String titulacao) {
+        super(titulacao, nome, codigo, nivel);
         this.area = area;
+        this.salario = calcularSalario(nivel);
+
     }
 
     public String getArea() {

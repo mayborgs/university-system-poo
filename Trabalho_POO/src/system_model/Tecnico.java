@@ -25,13 +25,10 @@ public class Tecnico extends Funcionario {
         /*adicionar mensagem depois talvez*/
     }
 
-    public Tecnico() {
-        this.funcao = "";
-    }
-
-    public Tecnico(String funcao, String nome, String codigo, double salario, String nivel) {
-        super(codigo, nome, salario, nivel);
+    public Tecnico(String funcao, String nome, String codigo, String nivel) {
+        super(codigo, nome, nivel);
         this.funcao = funcao;
+        this.salario = calcularSalario(nivel);
 
     }
 
