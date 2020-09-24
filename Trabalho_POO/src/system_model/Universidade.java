@@ -23,14 +23,15 @@ public class Universidade {
 
     public Universidade(String name) {
         this.nome = name;
+        this.database = Database.getInstance();
     }
-
+    
     public void addDepartments(String code, String name) {
-        Departamento d = new Departamento(code, name);
+        this.d = new Departamento(code, name);
         database.addDepartments(d);
 
     }
-
+    
     /*public void addUniversities(String name){
         Universidade d = new Universidade(name);
         database.addUniversities(d);

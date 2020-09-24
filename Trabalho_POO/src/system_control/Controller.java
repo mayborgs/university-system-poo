@@ -60,7 +60,7 @@ public class Controller {
        return u.d.showInfoDepartamento(code);
     }
 
-    public String showGeneralDep() throws CloneNotSupportedException {
+    public String showGeneralDep(){
        return u.d.showGeneralDep();
     }
 

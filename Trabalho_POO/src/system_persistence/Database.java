@@ -22,6 +22,8 @@ public class Database {
     private int countFunctionaries;
     private Departamento[] vetDepartments;
     private int countDepartments;
+    private static Database instance;
+    
     
     private Database() {
         /*this.vetUniversities = new Universidade[MAX];
@@ -30,8 +32,17 @@ public class Database {
         this.countFunctionaries = 0;
         this.vetDepartments = new Departamento[MAX];
         this.countDepartments = 0;
+        this.instance = null;
         
     }
+    
+      public static Database getInstance() {
+        if (instance == null) {
+            instance = new Database();
+        }
+        return instance;
+    }
+    
     
     public void addFunctionaries(Funcionario f) {
         if (countFunctionaries < MAX) {
@@ -75,7 +86,7 @@ public class Database {
         return null;
     }
     
-    public Funcionario[] funcionarios() throws CloneNotSupportedException{
+    public Funcionario[] funcionarios(){
         Funcionario funcionarios[] = new Funcionario[countFunctionaries];
         for(int i=0; i<countFunctionaries;i++){
             funcionarios[i] = vetFunctionaries[i].clone();
@@ -83,14 +94,13 @@ public class Database {
         return funcionarios;
     }
     
-    public Departamento[] departamentos() throws CloneNotSupportedException{
+    public Departamento[] departamentos() {
         Departamento departamentos[] = new Departamento[countDepartments];
         for(int i=0; i<countDepartments;i++){
             departamentos[i] = vetDepartments[i].clone();
         }
         return departamentos;
     }
-    
     
 }
 
