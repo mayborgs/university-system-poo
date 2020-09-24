@@ -3,9 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+//GABRIELA MARIA SINASTRE & MAYKON DOUGLAS BORGES
 package system_model;
 
+
+import system.IU.IUBemVindo;
 import system_control.Controller;
+
 
 /**
  *
@@ -18,6 +23,12 @@ public class Trabalho_POO {
      */
     public static void main(String[] args) throws CloneNotSupportedException {
         // TODO code application logic here
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IUBemVindo().setVisible(true);
+            }
+        });
         
         Controller c = new Controller();
      
@@ -46,9 +57,7 @@ public class Trabalho_POO {
         System.out.println(c.showInfoDepartamento("124"));
         
         System.out.println(c.showGeneralDep());
-        
-        
-        
+      
     }
 
 }
