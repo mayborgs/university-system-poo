@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+//GABRIELA MARIA SINASTRE & MAYKON DOUGLAS BORGES
 package system_model;
+
+import system.IU.IUBemVindo;
 
 /**
  *
@@ -16,6 +20,11 @@ public class Trabalho_POO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IUBemVindo().setVisible(true);
+            }
+        });
     }
 
 }
