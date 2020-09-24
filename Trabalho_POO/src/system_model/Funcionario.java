@@ -39,6 +39,7 @@ public abstract class Funcionario implements Cloneable {
     public Efetivo e;
     public Substituto s;
     public Tecnico t;
+   
     protected String codigo;
     protected String nome;
     protected double salario;
@@ -86,7 +87,7 @@ public abstract class Funcionario implements Cloneable {
     }
 
     @Override
-    public Funcionario clone() throws CloneNotSupportedException {
+    public Funcionario clone(){
         try {
             return (Funcionario) super.clone();
         } catch (CloneNotSupportedException ex) {
