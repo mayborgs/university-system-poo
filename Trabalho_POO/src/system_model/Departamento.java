@@ -14,7 +14,7 @@ import static system_persistence.Database.MAX;
  *
  * @author maayk
  */
-public class Departamento implements Cloneable{
+public class Departamento implements Cloneable {
 
     private String codigo;
     private String nome;
@@ -22,6 +22,13 @@ public class Departamento implements Cloneable{
     private int countFunc;
     private double totalspend;
     private static Database database;
+
+    public Departamento() {
+        this.database = Database.getInstance();
+        this.f = new Funcionario[MAX];
+        this.totalspend = 0;
+        this.countFunc = 0;
+    }
 
     public Departamento(String code, String name) {
         this.codigo = code;
@@ -41,8 +48,8 @@ public class Departamento implements Cloneable{
 
     }
 
-    public void addSubstituto(int cargahoraria, String area, String nome, String codigo, double salario, String nivel, String titulacao) {
-        Substituto s = new Substituto(cargahoraria, area, nome, codigo, nivel, titulacao);
+    public void addSubstituto(int cargahoraria, String nome, String codigo, String nivel, String titulacao) {
+        Substituto s = new Substituto(cargahoraria, nome, codigo, nivel, titulacao);
         database.addFunctionaries(s);
         f[countFunc] = s;
         countFunc++;
@@ -62,10 +69,10 @@ public class Departamento implements Cloneable{
         String data = "";
         for (int i = 0; i < vet.length; i++) {
             data = data
-                    + "Nome: " + vet[i].getNome() + "/n"
-                    + "Codigo: " + vet[i].getCodigo() + "/n"
-                    + "Salario: " + vet[i].getSalario() + "/n"
-                    + "Nivel: " + vet[i].getNivel() + "/n";
+                    + "Nome: " + vet[i].getNome() + "\n"
+                    + "Codigo: " + vet[i].getCodigo() + "\n"
+                    + "Salario: " + vet[i].getSalario() + "\n"
+                    + "Nivel: " + vet[i].getNivel() + "\n";
         }
         return data;
     }
@@ -76,54 +83,54 @@ public class Departamento implements Cloneable{
         for (int i = 0; i < vet.length; i++) {
             if (vet[i] instanceof Tecnico) {
                 data = data
-                        + "Nome: " + vet[i].getNome() + "/n"
-                        + "Codigo: " + vet[i].getCodigo() + "/n"
-                        + "Salario: " + vet[i].getSalario() + "/n"
-                        + "Nivel: " + vet[i].getNivel() + "/n";
+                        + "Nome: " + vet[i].getNome() + "\n"
+                        + "Codigo: " + vet[i].getCodigo() + "\n"
+                        + "Salario: " + vet[i].getSalario() + "\n"
+                        + "Nivel: " + vet[i].getNivel() + "\n";
             }
         }
         return data;
     }
 
-    public String showAllDocentes() throws CloneNotSupportedException {
+    public String showAllDocentes() {
         Funcionario vet[] = database.funcionarios();
         String data = "";
         for (int i = 0; i < vet.length; i++) {
             if (vet[i] instanceof Substituto) {
                 data = data
-                        + "Nome: " + vet[i].getNome() + "/n"
-                        + "Codigo: " + vet[i].getCodigo() + "/n"
-                        + "Salario: " + vet[i].getSalario() + "/n"
-                        + "Nivel: " + vet[i].getNivel() + "/n"
-                        + "Titulação: " + ((Substituto)vet[i]).getTitulacao() + "/n"
-                        + "Carga horária: " + ((Substituto)vet[i]).getCargahoraria() + "/n";
+                        + "Nome: " + vet[i].getNome() + "\n"
+                        + "Codigo: " + vet[i].getCodigo() + "\n"
+                        + "Salario: " + vet[i].getSalario() + "\n"
+                        + "Nivel: " + vet[i].getNivel() + "\n"
+                        + "Titulação: " + ((Substituto) vet[i]).getTitulacao() + "\n"
+                        + "Carga horária: " + ((Substituto) vet[i]).getCargahoraria() + "\n";
 
             } else if (vet[i] instanceof Efetivo) {
                 data = data
-                        + "Nome: " + vet[i].getNome() + "/n"
-                        + "Codigo: " + vet[i].getCodigo() + "/n"
-                        + "Salario: " + vet[i].getSalario() + "/n"
-                        + "Nivel: " + vet[i].getNivel() + "/n"
-                        + "Titulação: " + ((Efetivo)vet[i]).getTitulacao() + "/n"
-                        + "Área: " + ((Efetivo)vet[i]).getArea() + "/n";
+                        + "Nome: " + vet[i].getNome() + "\n"
+                        + "Codigo: " + vet[i].getCodigo() + "\n"
+                        + "Salario: " + vet[i].getSalario() + "\n"
+                        + "Nivel: " + vet[i].getNivel() + "\n"
+                        + "Titulação: " + ((Efetivo) vet[i]).getTitulacao() + "\n"
+                        + "Área: " + ((Efetivo) vet[i]).getArea() + "\n";
 
             }
         }
         return data;
     }
 
-    public String showAllSubs(){
+    public String showAllSubs() {
         Funcionario vet[] = database.funcionarios();
         String data = "";
         for (int i = 0; i < vet.length; i++) {
             if (vet[i] instanceof Substituto) {
                 data = data
-                        + "Nome: " + vet[i].getNome() + "/n"
-                        + "Codigo: " + vet[i].getCodigo() + "/n"
-                        + "Salario: " + vet[i].getSalario() + "/n"
-                        + "Nivel: " + vet[i].getNivel() + "/n"
-                        + "Titulação: " +((Substituto) vet[i]).getTitulacao() + "/n"
-                        + "Carga Horária: " +((Substituto) vet[i]).getCargahoraria() + "/n";
+                        + "Nome: " + vet[i].getNome() + "\n"
+                        + "Codigo: " + vet[i].getCodigo() + "\n"
+                        + "Salario: " + vet[i].getSalario() + "\n"
+                        + "Nivel: " + vet[i].getNivel() + "\n"
+                        + "Titulação: " + ((Substituto) vet[i]).getTitulacao() + "\n"
+                        + "Carga Horária: " + ((Substituto) vet[i]).getCargahoraria() + "\n";
             }
         }
         return data;
@@ -135,11 +142,11 @@ public class Departamento implements Cloneable{
         for (int i = 0; i < vet.length; i++) {
             if (vet[i] instanceof Efetivo) {
                 data = data
-                        + "Nome: " + vet[i].getNome() + "/n"
-                        + "Codigo: " + vet[i].getCodigo() + "/n"
-                        + "Salario: " + vet[i].getSalario() + "/n"
-                        + "Nivel: " + vet[i].getNivel() + "/n"
-                        + "Área: " + ((Efetivo) vet[i]).getArea() + "/n";
+                        + "Nome: " + vet[i].getNome() + "\n"
+                        + "Codigo: " + vet[i].getCodigo() + "\n"
+                        + "Salario: " + vet[i].getSalario() + "\n"
+                        + "Nivel: " + vet[i].getNivel() + "\n"
+                        + "Área: " + ((Efetivo) vet[i]).getArea() + "\n";
             }
         }
         return data;
@@ -151,12 +158,36 @@ public class Departamento implements Cloneable{
         for (int i = 0; i < vet.length; i++) {
             if (vet[i].salario >= de && vet[i].salario <= ate) {
                 data = data
-                        + "Nome: " + vet[i].getNome() + "/n"
-                        + "Codigo: " + vet[i].getCodigo() + "/n"
-                        + "Salario: " + vet[i].getSalario() + "/n"
-                        + "Nivel: " + vet[i].getNivel() + "/n";
+                        + "Nome: " + vet[i].getNome() + "\n"
+                        + "Codigo: " + vet[i].getCodigo() + "\n"
+                        + "Salario: " + vet[i].getSalario() + "\n"
+                        + "Nivel: " + vet[i].getNivel() + "\n";
             }
         }
+        return data;
+    }
+
+    public String showFuncNome(String nome) throws CloneNotSupportedException {
+        Funcionario fu = database.searchName(nome);
+        String data = "";
+        data = data
+                + "Nome: " + fu.getNome() + "\n"
+                + "Codigo: " + fu.getCodigo() + "\n"
+                + "Salario: " + fu.getSalario() + "\n"
+                + "Nivel: " + fu.getNivel() + "\n";
+
+        return data;
+    }
+
+    public String showFuncCode(String code) throws CloneNotSupportedException {
+        Funcionario fuc = database.searchCode(code);
+        String data = "";
+        data = data
+                + "Nome: " + fuc.getNome() + "\n"
+                + "Codigo: " + fuc.getCodigo() + "\n"
+                + "Salario: " + fuc.getSalario() + "\n"
+                + "Nivel: " + fuc.getNivel() + "\n";
+
         return data;
     }
 
@@ -168,18 +199,18 @@ public class Departamento implements Cloneable{
                 for (int j = 0; j < vet[i].countFunc; j++) {
                     if (j == (vet[i].countFunc) - 1) {
                         data = data
-                                + "Nome: " + vet[i].f[j].nome + "/n"
-                                + "Codigo: " + vet[i].f[j].codigo + "/n"
-                                + "Salario: " + vet[i].f[j].salario + "/n"
-                                + "Nivel: " + vet[i].f[j].nivel + "/n"
-                                + "Gastos totais: " + vet[i].totalspend + "/n";
+                                + "Nome: " + vet[i].f[j].nome + "\n"
+                                + "Codigo: " + vet[i].f[j].codigo + "\n"
+                                + "Salario: " + vet[i].f[j].salario + "\n"
+                                + "Nivel: " + vet[i].f[j].nivel + "\n"
+                                + "Gastos totais: " + vet[i].totalspend + "\n";
                         return data;
                     }
                     data = data
-                            + "Nome: " + vet[i].f[j].nome + "/n"
-                            + "Codigo: " + vet[i].f[j].codigo + "/n"
-                            + "Salario: " + vet[i].f[j].salario + "/n"
-                            + "Nivel: " + vet[i].f[j].nivel + "/n";
+                            + "Nome: " + vet[i].f[j].nome + "\n"
+                            + "Codigo: " + vet[i].f[j].codigo + "\n"
+                            + "Salario: " + vet[i].f[j].salario + "\n"
+                            + "Nivel: " + vet[i].f[j].nivel + "\n";
 
                 }
             }
@@ -187,29 +218,30 @@ public class Departamento implements Cloneable{
         return data;
     }
 
-    public String showGeneralDep(){
+    public String showGeneralDep() {
         Departamento vet[] = database.departamentos();
         String data = "";
         for (int i = 0; i < vet.length; i++) {
             data = data
-                    + "Departamento: " + vet[i].nome + "/n"
-                    + "Codigo: " + vet[i].codigo + "/n"
-                    + "Quantidade de Funcionários: " + vet[i].countFunc + "/n"
-                    + "Gastos totais: " + vet[i].totalspend + "/n";
+                    + "\n\nDepartamento: " + vet[i].nome + "\n"
+                    + "Codigo: " + vet[i].codigo + "\n"
+                    + "Quantidade de Funcionários: " + vet[i].countFunc + "\n"
+                    + "Gastos totais: " + vet[i].totalspend + "\n";
             for (int j = 0; j < vet[i].countFunc; j++) {
                 if (j == (vet[i].countFunc) - 1) {
                     data = data
-                            + "Nome: " + vet[i].f[j].nome + "/n"
-                            + "Codigo: " + vet[i].f[j].codigo + "/n"
-                            + "Salario: " + vet[i].f[j].salario + "/n"
-                            + "Nivel: " + vet[i].f[j].nivel + "/n"
-                            + "Gastos totais: " + vet[i].totalspend + "/n/n";
+                            + "\n\nNome: " + vet[i].f[j].nome + "\n"
+                            + "Codigo: " + vet[i].f[j].codigo + "\n"
+                            + "Salario: " + vet[i].f[j].salario + "\n"
+                            + "Nivel: " + vet[i].f[j].nivel + "\n"
+                            + "Gastos totais: " + vet[i].totalspend + "\n\n";
+                    return data;
                 }
                 data = data
-                        + "Nome: " + vet[i].f[j].nome + "/n"
-                        + "Codigo: " + vet[i].f[j].codigo + "/n"
-                        + "Salario: " + vet[i].f[j].salario + "/n"
-                        + "Nivel: " + vet[i].f[j].nivel + "/n";
+                        + "\n\nNome: " + vet[i].f[j].nome + "\n"
+                        + "Codigo: " + vet[i].f[j].codigo + "\n"
+                        + "Salario: " + vet[i].f[j].salario + "\n"
+                        + "Nivel: " + vet[i].f[j].nivel + "\n";
             }
         }
 
@@ -219,13 +251,13 @@ public class Departamento implements Cloneable{
     public String showInfoDepartamentoFaixaEspecifica(double de, double ate) throws CloneNotSupportedException {
         Departamento vet[] = database.departamentos();
         String data = "";
-        for (int i = 0; i < vet.length ; i++) {
-            if (vet[i].totalspend >= de && vet[i].totalspend <= ate){
+        for (int i = 0; i < vet.length; i++) {
+            if (vet[i].totalspend >= de && vet[i].totalspend <= ate) {
                 data = data
-                        + "Departamento: " + vet[i].nome + "/n"
-                        + "Codigo: " + vet[i].codigo + "/n"
-                        + "Quantidade de Funcionários: " + vet[i].countFunc + "/n"
-                        + "Gastos totais: " + vet[i].totalspend + "/n";
+                        + "Departamento: " + vet[i].nome + "\n"
+                        + "Codigo: " + vet[i].codigo + "\n"
+                        + "Quantidade de Funcionários: " + vet[i].countFunc + "\n"
+                        + "Gastos totais: " + vet[i].totalspend + "\n";
             }
         }
         return data;
@@ -236,10 +268,10 @@ public class Departamento implements Cloneable{
         String data = "";
         for (int i = 0; i < vet.length; i++) {
             data = data
-                    + "Departamento: " + vet[i].nome + "/n"
-                    + "Codigo: " + vet[i].codigo + "/n"
-                    + "Quantidade de Funcionários: " + vet[i].countFunc + "/n"
-                    + "Gastos totais: " + vet[i].totalspend + "/n";
+                    + "Departamento: " + vet[i].nome + "\n"
+                    + "Codigo: " + vet[i].codigo + "\n"
+                    + "Quantidade de Funcionários: " + vet[i].countFunc + "\n"
+                    + "Gastos totais: " + vet[i].totalspend + "\n";
 
         }
         return data;
@@ -262,7 +294,7 @@ public class Departamento implements Cloneable{
     }
 
     @Override
-    public Departamento clone(){
+    public Departamento clone() {
         try {
             return (Departamento) super.clone();
         } catch (CloneNotSupportedException ex) {

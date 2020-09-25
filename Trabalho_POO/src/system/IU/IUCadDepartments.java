@@ -6,7 +6,6 @@
 package system.IU;
 
 import system_control.Controller;
-import system_model.Departamento;
 
 /**
  *
@@ -152,46 +151,45 @@ public class IUCadDepartments extends javax.swing.JFrame {
 
     private void btnSalvarDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarDepActionPerformed
         // TODO add your handling code here:
-     /*   String nome = campoNomeDep.getText();
-        String codigo = campoCodDep.getText();
-        
-        Controller control = new Controller();
-        control.addDepartments(codigo, nome);
-*/
-        
-        
+        Controller c = new Controller();
+        String code1 = campoCodDep.getText();
+        String nome1 = campoNomeDep.getText();
+        c.addDepartments(code1, nome1);
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IUCadFunctionaries().setVisible(true);
+                IUCadFunctionaries f = new IUCadFunctionaries();
+                f.setVisible(true);
+                f.cadFun(nome1, code1);
             }
         });
-        
+
         setVisible(false);
     }//GEN-LAST:event_btnSalvarDepActionPerformed
 
     private void campoNomeDepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeDepFocusLost
         // TODO add your handling code here:
         String nome = campoNomeDep.getText();
-        
-        
+
+
     }//GEN-LAST:event_campoNomeDepFocusLost
 
     private void campoNomeDepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNomeDepKeyReleased
         // TODO add your handling code here:
-        if (campoNomeDep.getText().length()>0){
-                btnSalvarDep.setEnabled(true);
-                campoCodDepKeyReleased(evt);
-            } else if (campoNomeDep.getText().length()<= 0) {
-                btnSalvarDep.setEnabled(false);
-            }
+        if (campoNomeDep.getText().length() > 0) {
+            btnSalvarDep.setEnabled(true);
+            campoCodDepKeyReleased(evt);
+        } else if (campoNomeDep.getText().length() <= 0) {
+            btnSalvarDep.setEnabled(false);
+        }
     }//GEN-LAST:event_campoNomeDepKeyReleased
 
     private void campoCodDepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodDepKeyReleased
         // TODO add your handling code here:
-        if (campoCodDep.getText().length()>0){
-                btnSalvarDep.setEnabled(true);
-            } else if (campoCodDep.getText().length()<= 0) {
-                btnSalvarDep.setEnabled(false);
+        if (campoCodDep.getText().length() > 0) {
+            btnSalvarDep.setEnabled(true);
+        } else if (campoCodDep.getText().length() <= 0) {
+            btnSalvarDep.setEnabled(false);
         }
     }//GEN-LAST:event_campoCodDepKeyReleased
 

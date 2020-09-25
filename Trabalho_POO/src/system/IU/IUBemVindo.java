@@ -127,7 +127,7 @@ public class IUBemVindo extends javax.swing.JFrame {
 
     private void btnRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatoriosActionPerformed
         // TODO add your handling code here:
-                java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IURelatorioCompleto().setVisible(true);
             }
