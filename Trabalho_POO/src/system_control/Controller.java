@@ -5,6 +5,7 @@
  */
 package system_control;
 
+import system_model.Departamento;
 import system_model.Universidade;
 
 /**
@@ -12,66 +13,73 @@ import system_model.Universidade;
  * @author maayk
  */
 public class Controller {
-    
+
     private Universidade u = new Universidade("ESCOLINHA");
-    
-    public void addEfetivo(String area, String nome, String codigo, String nivel, String titulacao) {
-        u.d.addEfetivo(area, nome, codigo, nivel, titulacao);
+    private Departamento d = new Departamento();
+
+    public void addEfetivo(String area, String nome, String codigo, String nivel, String titulacao, String codD, String nomeD) {
+        u.addEfetivo(area, nome, codigo, nivel, titulacao, codD, nomeD);
     }
-    
-    public void addSubstituto(int cargahoraria, String area, String nome, String codigo, double salario, String nivel, String titulacao) {
-        u.d.addSubstituto(cargahoraria, area, nome, codigo, salario, nivel, titulacao);
+
+    public void addSubstituto(int cargahoraria, String nome, String codigo, String nivel, String titulacao, String codD, String nomeD) {
+        u.addSubstituto(cargahoraria, nome, codigo, nivel, titulacao, codD, nomeD);
     }
-    
-    public void addTecnico(String funcao, String nome, String codigo, double salario, String nivel) {
-        u.d.addTecnico(funcao, nome, codigo, salario, nivel);
+
+    public void addTecnico(String funcao, String nome, String codigo, double salario, String nivel, String codD, String nomeD) {
+        u.addTecnico(funcao, nome, codigo, salario, nivel, codD, nomeD);
     }
-    
+
     public void addDepartments(String code, String name) {
         u.addDepartments(code, name);
     }
-    
+
     public String showAllFunc() throws CloneNotSupportedException {
-        return u.d.showAllFunc();
+        return d.showAllFunc();
     }
-    
-    
+
     public String showAllTec() throws CloneNotSupportedException {
-       return u.d.showAllTec();
+        return d.showAllTec();
     }
 
     public String showAllDocentes() throws CloneNotSupportedException {
-      return u.d.showAllDocentes();
+        return d.showAllDocentes();
     }
 
     public String showAllSubs() throws CloneNotSupportedException {
-       return u.d.showAllSubs();
+        return d.showAllSubs();
     }
 
     public String showAllEfetivo() throws CloneNotSupportedException {
-       return u.d.showAllEfetivo();
+        return d.showAllEfetivo();
     }
 
     public String showFuncSalarioEspec(double de, double ate) throws CloneNotSupportedException {
-      return u.d.showFuncSalarioEspec(de, ate);
+        return d.showFuncSalarioEspec(de, ate);
     }
 
     public String showInfoDepartamento(String code) throws CloneNotSupportedException {
-       return u.d.showInfoDepartamento(code);
+        return d.showInfoDepartamento(code);
     }
 
-    public String showGeneralDep(){
-       return u.d.showGeneralDep();
+    public String showGeneralDep() {
+        return d.showGeneralDep();
     }
 
     public String showInfoDepartamentoFaixaEspecifica(double de, double ate) throws CloneNotSupportedException {
-        return u.d.showInfoDepartamentoFaixaEspecifica(de, ate);
+        return d.showInfoDepartamentoFaixaEspecifica(de, ate);
     }
 
     public String showInfoDepartamentos(double de, double ate) throws CloneNotSupportedException {
-        return u.d.showInfoDepartamentos(de, ate);
+        return d.showInfoDepartamentos(de, ate);
     }
-    }
-    
-    
 
+    public String showFuncNome(String nome1) throws CloneNotSupportedException {
+        return d.showFuncNome(nome1);
+    }
+
+    public String showFuncCode(String code1) throws CloneNotSupportedException {
+        return d.showFuncCode(code1);
+
+    }
+
+}

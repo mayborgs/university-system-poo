@@ -5,11 +5,15 @@
  */
 package system.IU;
 
+import system_control.Controller;
+
 /**
  *
  * @author gabri
  */
 public class IUCadFunctionaries extends javax.swing.JFrame {
+
+    String nomeDep, codDep;
 
     /**
      * Creates new form IUCadFunctionaries
@@ -17,6 +21,11 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
     public IUCadFunctionaries() {
         initComponents();
         this.setTitle("Cadastro de Funcionários");
+    }
+
+    public void cadFun(String nome, String cod) {
+        this.nomeDep = nome;
+        this.codDep = cod;
     }
 
     /**
@@ -259,11 +268,12 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
                     .addComponent(campoNomeFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNomeFunc))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelFuncao)
-                    .addComponent(jLabel1)
-                    .addComponent(labelArea)
-                    .addComponent(labelTitulacao))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelArea, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelFuncao)
+                        .addComponent(jLabel1)
+                        .addComponent(labelTitulacao)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComboBoxListaFuncoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,18 +300,18 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
 
     private void radioTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTecnicoActionPerformed
         // TODO add your handling code here:
-        
-        if  (radioTecnico.isSelected()) {
+
+        if (radioTecnico.isSelected()) {
             campoCodFunc.setEnabled(radioTecnico.isSelected());
             campoNomeFunc.setEnabled(radioTecnico.isSelected());
             ComboBoxListaFuncoes.setEnabled(radioTecnico.isSelected());
             ComboBoxListaNiveis.setEnabled(radioTecnico.isSelected());
-            
-            if("T1".equals(ComboBoxListaNiveis.getItemAt(0)) || "T2".equals(ComboBoxListaNiveis.getItemAt(1))) {
+
+            if ("T1".equals(ComboBoxListaNiveis.getItemAt(0)) || "T2".equals(ComboBoxListaNiveis.getItemAt(1))) {
                 ComboBoxListaNiveis.removeItem("T1");
                 ComboBoxListaNiveis.removeItem("T2");
             }
-            
+
             ComboBoxListaNiveis.addItem("T1");
             ComboBoxListaNiveis.addItem("T2");
             ComboBoxListaNiveis.removeItem("S1");
@@ -309,33 +319,31 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
             ComboBoxListaNiveis.removeItem("D1");
             ComboBoxListaNiveis.removeItem("D2");
             ComboBoxListaNiveis.removeItem("D3");
-            
+
             ComboBoxListaTitulacoes.setEnabled(false);
             ComboBoxListaAreas.setEnabled(false);
             radio12Horas.setEnabled(false);
             radio24Horas.setEnabled(false);
-        }       
-         
-        else {
+        } else {
             ComboBoxListaNiveis.removeItemAt(0);
             ComboBoxListaNiveis.removeItemAt(1);
-        
+
         }
-        
+
     }//GEN-LAST:event_radioTecnicoActionPerformed
 
     private void radioDocSubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDocSubsActionPerformed
         // TODO add your handling code here:
-        if  (radioDocSubs.isSelected()) {
+        if (radioDocSubs.isSelected()) {
             campoCodFunc.setEnabled(radioDocSubs.isSelected());
             campoNomeFunc.setEnabled(radioDocSubs.isSelected());
             ComboBoxListaNiveis.setEnabled(radioDocSubs.isSelected());
-            
-            if("S1".equals(ComboBoxListaNiveis.getItemAt(0)) || "S2".equals(ComboBoxListaNiveis.getItemAt(1))) {
+
+            if ("S1".equals(ComboBoxListaNiveis.getItemAt(0)) || "S2".equals(ComboBoxListaNiveis.getItemAt(1))) {
                 ComboBoxListaNiveis.removeItem("S1");
                 ComboBoxListaNiveis.removeItem("S2");
             }
-            
+
             ComboBoxListaNiveis.addItem("S1");
             ComboBoxListaNiveis.addItem("S2");
             ComboBoxListaNiveis.removeItem("T1");
@@ -343,14 +351,12 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
             ComboBoxListaNiveis.removeItem("D1");
             ComboBoxListaNiveis.removeItem("D2");
             ComboBoxListaNiveis.removeItem("D3");
-            
-            
-            
+
             ComboBoxListaTitulacoes.setEnabled(radioDocSubs.isSelected());
             radio12Horas.setEnabled(radioDocSubs.isSelected());
             radio24Horas.setEnabled(radioDocSubs.isSelected());
             ComboBoxListaAreas.setEnabled(radioDocSubs.isSelected());
-            
+
             ComboBoxListaFuncoes.setEnabled(false);
         }
     }//GEN-LAST:event_radioDocSubsActionPerformed
@@ -365,8 +371,42 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
 
     private void btnSalvarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarFuncActionPerformed
         // TODO add your handling code here:
-        String nomeFun = campoNomeFunc.getText();
-        String codFun = campoCodFunc.getText();
+        Controller c = new Controller();
+        if (radioTecnico.isSelected()) {
+            String nome1 = campoNomeFunc.getText();
+            String code1 = campoCodFunc.getText();
+            String func1 = ComboBoxListaFuncoes.getSelectedItem().toString();
+            String nivel1 = ComboBoxListaNiveis.getSelectedItem().toString();
+            c.addTecnico(func1, nome1, code1, 0, nivel1, codDep, nomeDep);
+        }
+        if (radioDocSubs.isSelected()) {
+            int carga1 = 0;
+            String nome1 = campoNomeFunc.getText();
+            String code1 = campoCodFunc.getText();
+            String nivel1 = ComboBoxListaNiveis.getSelectedItem().toString();
+            if (radio12Horas.isSelected()) {
+                carga1 = 12;
+            }
+            if (radio24Horas.isSelected()) {
+                carga1 = 24;
+            }
+            String titu1 = ComboBoxListaTitulacoes.getSelectedItem().toString();
+            c.addSubstituto(carga1, nome1, code1, nivel1, titu1, codDep, nomeDep);
+        }
+        if (radioDocEfetivo.isSelected()) {
+            String nome1 = campoNomeFunc.getText();
+            String code1 = campoCodFunc.getText();
+            String nivel1 = ComboBoxListaNiveis.getSelectedItem().toString();
+            String titu1 = ComboBoxListaTitulacoes.getSelectedItem().toString();
+            String area1 = ComboBoxListaAreas.getSelectedItem().toString();
+
+            c.addEfetivo(area1, nome1, code1, nivel1, titu1, codDep, nomeDep);
+
+        }
+
+        campoCodFunc.setText("");
+        campoNomeFunc.setText("");
+
     }//GEN-LAST:event_btnSalvarFuncActionPerformed
 
     private void ComboBoxListaAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxListaAreasActionPerformed
@@ -375,21 +415,20 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
 
     private void radioDocEfetivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDocEfetivoActionPerformed
         // TODO add your handling code here:
-        
-        if  (radioDocEfetivo.isSelected()) {
+
+        if (radioDocEfetivo.isSelected()) {
             campoCodFunc.setEnabled(radioDocEfetivo.isSelected());
             campoNomeFunc.setEnabled(radioDocEfetivo.isSelected());
             ComboBoxListaTitulacoes.setEnabled(radioDocEfetivo.isSelected());
             ComboBoxListaAreas.setEnabled(radioDocEfetivo.isSelected());
             ComboBoxListaNiveis.setEnabled(radioDocEfetivo.isSelected());
-            
-            
-            if("D1".equals(ComboBoxListaNiveis.getItemAt(0)) || "D2".equals(ComboBoxListaNiveis.getItemAt(1)) || "D3".equals(ComboBoxListaNiveis.getItemAt(2))) {
+
+            if ("D1".equals(ComboBoxListaNiveis.getItemAt(0)) || "D2".equals(ComboBoxListaNiveis.getItemAt(1)) || "D3".equals(ComboBoxListaNiveis.getItemAt(2))) {
                 ComboBoxListaNiveis.removeItem("D1");
                 ComboBoxListaNiveis.removeItem("D2");
                 ComboBoxListaNiveis.removeItem("D3");
             }
-            
+
             ComboBoxListaNiveis.addItem("D1");
             ComboBoxListaNiveis.addItem("D2");
             ComboBoxListaNiveis.addItem("D3");
@@ -398,31 +437,29 @@ public class IUCadFunctionaries extends javax.swing.JFrame {
             ComboBoxListaNiveis.removeItem("S1");
             ComboBoxListaNiveis.removeItem("S2");
 
-            
-            
             ComboBoxListaFuncoes.setEnabled(false);
             radio12Horas.setEnabled(false);
             radio24Horas.setEnabled(false);
         }
-        
+
     }//GEN-LAST:event_radioDocEfetivoActionPerformed
 
     private void campoCodFuncKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodFuncKeyReleased
         // TODO add your handling code here:
-        if (campoCodFunc.getText().length()>0){
-                btnSalvarFunc.setEnabled(true);
-                campoNomeFuncKeyReleased(evt);
-            } else if (campoCodFunc.getText().length()<= 0) {
-                btnSalvarFunc.setEnabled(false);
-            }
+        if (campoCodFunc.getText().length() > 0) {
+            btnSalvarFunc.setEnabled(true);
+            campoNomeFuncKeyReleased(evt);
+        } else if (campoCodFunc.getText().length() <= 0) {
+            btnSalvarFunc.setEnabled(false);
+        }
     }//GEN-LAST:event_campoCodFuncKeyReleased
 
     private void campoNomeFuncKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNomeFuncKeyReleased
         // TODO add your handling code here:
-       if (campoNomeFunc.getText().length()>0){
-                btnSalvarFunc.setEnabled(true);
-            } else if (campoNomeFunc.getText().length()<= 0) {
-                btnSalvarFunc.setEnabled(false);
+        if (campoNomeFunc.getText().length() > 0) {
+            btnSalvarFunc.setEnabled(true);
+        } else if (campoNomeFunc.getText().length() <= 0) {
+            btnSalvarFunc.setEnabled(false);
         }
     }//GEN-LAST:event_campoNomeFuncKeyReleased
 

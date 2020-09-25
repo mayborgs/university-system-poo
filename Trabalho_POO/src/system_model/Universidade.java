@@ -6,10 +6,6 @@
 package system_model;
 
 import system_persistence.Database;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static system_persistence.Database.MAX;
-import system_model.Tecnico;
 
 /**
  *
@@ -19,19 +15,36 @@ public class Universidade {
 
     private String nome;
     private static Database database;
-    public Departamento d;
+    private Departamento d;
 
     public Universidade(String name) {
         this.nome = name;
         this.database = Database.getInstance();
     }
-    
+
     public void addDepartments(String code, String name) {
         this.d = new Departamento(code, name);
         database.addDepartments(d);
 
     }
-    
+
+    public void addEfetivo(String area, String nome, String codigo, String nivel, String titulacao, String codD, String nomeD) {
+        Departamento d = database.searchDepartments(codD);
+        d.addEfetivo(area, nome, codigo, nivel, titulacao);
+
+    }
+
+    public void addSubstituto(int cargahoraria, String nome, String codigo, String nivel, String titulacao, String codD, String nomeD) {
+        Departamento d = database.searchDepartments(codD);
+        d.addSubstituto(cargahoraria, nome, codigo, nivel, titulacao);
+    }
+
+    public void addTecnico(String funcao, String nome, String codigo, double salario, String nivel, String codD, String nomeD) {
+        Departamento d = database.searchDepartments(codD);
+        d.addTecnico(funcao, nome, codigo, salario, nivel);
+
+    }
+
     /*public void addUniversities(String name){
         Universidade d = new Universidade(name);
         database.addUniversities(d);

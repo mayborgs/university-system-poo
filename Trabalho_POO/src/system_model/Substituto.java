@@ -6,6 +6,7 @@
 package system_model;
 
 /**
+ * cuidado
  *
  * @author maayk
  */
@@ -26,7 +27,7 @@ public class Substituto extends Docente {
         /*adicionar mensagem depois talvez*/
     }
 
-    public Substituto(int cargahoraria, String area, String nome, String codigo, String nivel, String titulacao) {
+    public Substituto(int cargahoraria, String nome, String codigo, String nivel, String titulacao) {
         super(titulacao, nome, codigo, nivel);
         this.cargahoraria = cargahoraria;
         this.salario = calcularSalario(nivel);

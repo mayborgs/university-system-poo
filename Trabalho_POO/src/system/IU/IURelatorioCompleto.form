@@ -88,7 +88,7 @@
                   <Component id="btnLimparRel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="btnVoltarRell" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,18 +109,14 @@
           <Font name="Microsoft Tai Le" size="14" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Departamentos"/>
-            <StringItem index="1" value="Docentes"/>
-            <StringItem index="2" value="Docentes Efetivos"/>
-            <StringItem index="3" value="Docentes Substitutos"/>
-            <StringItem index="4" value="Funcion&#xe1;rios"/>
-            <StringItem index="5" value="Geral"/>
-            <StringItem index="6" value="T&#xe9;cnicos"/>
+          <StringArray count="6">
+            <StringItem index="0" value="Docentes"/>
+            <StringItem index="1" value="Docentes Efetivos"/>
+            <StringItem index="2" value="Docentes Substitutos"/>
+            <StringItem index="3" value="Funcion&#xe1;rios"/>
+            <StringItem index="4" value="Geral"/>
+            <StringItem index="5" value="T&#xe9;cnicos"/>
           </StringArray>
-        </Property>
-        <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection component="ComboBoxOpRelatorio" type="bean"/>
         </Property>
       </Properties>
       <Events>
@@ -137,6 +133,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Exibir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExibirActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

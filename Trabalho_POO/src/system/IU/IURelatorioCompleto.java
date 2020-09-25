@@ -5,11 +5,17 @@
  */
 package system.IU;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import system_control.Controller;
+
 /**
  *
  * @author gabri
  */
 public class IURelatorioCompleto extends javax.swing.JFrame {
+
+    private Controller control = new Controller();
 
     /**
      * Creates new form IURelatorioCompleto
@@ -58,8 +64,7 @@ public class IURelatorioCompleto extends javax.swing.JFrame {
         labelRelatorios.setText("RELATÓRIOS");
 
         ComboBoxOpRelatorio.setFont(new java.awt.Font("Microsoft Tai Le", 0, 14)); // NOI18N
-        ComboBoxOpRelatorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Departamentos", "Docentes", "Docentes Efetivos", "Docentes Substitutos", "Funcionários", "Geral", "Técnicos" }));
-        ComboBoxOpRelatorio.setSelectedItem(ComboBoxOpRelatorio);
+        ComboBoxOpRelatorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Docentes", "Docentes Efetivos", "Docentes Substitutos", "Funcionários", "Geral", "Técnicos" }));
         ComboBoxOpRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxOpRelatorioActionPerformed(evt);
@@ -68,6 +73,11 @@ public class IURelatorioCompleto extends javax.swing.JFrame {
 
         btnExibir.setFont(new java.awt.Font("Microsoft Tai Le", 0, 18)); // NOI18N
         btnExibir.setText("Exibir");
+        btnExibir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExibirActionPerformed(evt);
+            }
+        });
 
         textRelatorios.setColumns(20);
         textRelatorios.setRows(5);
@@ -127,7 +137,7 @@ public class IURelatorioCompleto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimparRel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVoltarRell, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,6 +156,49 @@ public class IURelatorioCompleto extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_btnVoltarRellActionPerformed
+
+    private void btnExibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirActionPerformed
+        // TODO add your handling code here:
+        if (ComboBoxOpRelatorio.getSelectedItem().equals("Geral")) {
+            textRelatorios.setText(control.showGeneralDep());
+        }
+        if (ComboBoxOpRelatorio.getSelectedItem().equals("Docentes")) {
+            try {
+                textRelatorios.setText(control.showAllDocentes());
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioCompleto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (ComboBoxOpRelatorio.getSelectedItem().equals("Docentes Efetivos")) {
+            try {
+                textRelatorios.setText(control.showAllEfetivo());
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioCompleto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (ComboBoxOpRelatorio.getSelectedItem().equals("Docentes Substitutos")) {
+            try {
+                textRelatorios.setText(control.showAllSubs());
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioCompleto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (ComboBoxOpRelatorio.getSelectedItem().equals("Funcionários")) {
+            try {
+                textRelatorios.setText(control.showAllFunc());
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioCompleto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (ComboBoxOpRelatorio.getSelectedItem().equals("Técnicos")) {
+            try {
+                textRelatorios.setText(control.showAllTec());
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioCompleto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_btnExibirActionPerformed
 
     /**
      * @param args the command line arguments

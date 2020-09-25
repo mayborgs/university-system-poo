@@ -5,11 +5,18 @@
  */
 package system.IU;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import system_control.Controller;
+
 /**
  *
  * @author gabri
  */
+
 public class IURelatorioPesquisa extends javax.swing.JFrame {
+
+    private Controller control = new Controller();
 
     /**
      * Creates new form IURelatorioPesquisa
@@ -322,9 +329,9 @@ public class IURelatorioPesquisa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -333,20 +340,19 @@ public class IURelatorioPesquisa extends javax.swing.JFrame {
 
     private void radio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio1ActionPerformed
         // TODO add your handling code here:
-        
-        if (radio1.isSelected()){
+
+        if (radio1.isSelected()) {
 
             campDeGastos.setEnabled(radio1.isSelected());
             campAteGastos.setEnabled(radio1.isSelected());
-            
+
             campFunCod.setEnabled(false);
             campFunNome.setEnabled(false);
             campAteSal.setEnabled(false);
             campDeSal.setEnabled(false);
             campNomeDep.setEnabled(false);
-            
 
-        }      
+        }
 
     }//GEN-LAST:event_radio1ActionPerformed
 
@@ -357,79 +363,116 @@ public class IURelatorioPesquisa extends javax.swing.JFrame {
     private void radio5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio5ActionPerformed
         // TODO add your handling code here:
 
-        if (radio5.isSelected()){
+        if (radio5.isSelected()) {
             campFunCod.setEnabled(radio5.isSelected());
 
             campDeGastos.setEnabled(false);
-            campAteGastos.setEnabled(false);            
+            campAteGastos.setEnabled(false);
             campFunNome.setEnabled(false);
             campAteSal.setEnabled(false);
             campDeSal.setEnabled(false);
             campNomeDep.setEnabled(false);
-            
-        } 
+
+        }
     }//GEN-LAST:event_radio5ActionPerformed
 
     private void btnMostrarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarRelatorioActionPerformed
         // TODO add your handling code here:
-        /*String deDepGastos = campDeGastos.getText();
-        String ateDepGastos = campAteGastos.getText();
-        String deFunSal = campDeSal.getText();
-        String ateFunSal = campAteSal.getText();*/
-        
-        //System.out.println("" ++);
-        
-       // buttonGroup1.getSelection();
-        
-        
-        
-        
+        if (radio1.isSelected()) {
+            double de1 = Double.parseDouble(campDeGastos.getText());
+            double ate1 = Double.parseDouble(campAteGastos.getText());
+            try {
+                textRelatorios.setText(control.showInfoDepartamentoFaixaEspecifica(de1, ate1));
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioPesquisa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (radio2.isSelected()) {
+            double de1 = Double.parseDouble(campDeSal.getText());
+            double ate1 = Double.parseDouble(campAteSal.getText());
+            try {
+                textRelatorios.setText(control.showFuncSalarioEspec(de1, ate1));
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioPesquisa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (radio3.isSelected()) {
+            String code1 = (campNomeDep.getText());
+            try {
+                textRelatorios.setText(control.showInfoDepartamento(code1));
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioPesquisa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (radio4.isSelected()) {
+            String nome2 = (campFunNome.getText());
+            try {
+                textRelatorios.setText(control.showFuncNome(nome2));
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioPesquisa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        if (radio5.isSelected()) {
+            String code3 = (campFunCod.getText());
+            try {
+                textRelatorios.setText(control.showFuncCode(code3));
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(IURelatorioPesquisa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
     }//GEN-LAST:event_btnMostrarRelatorioActionPerformed
 
     private void radio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio2ActionPerformed
         // TODO add your handling code here:
-        
-        if (radio2.isSelected()){
+
+        if (radio2.isSelected()) {
             campAteSal.setEnabled(radio2.isSelected());
             campDeSal.setEnabled(radio2.isSelected());
-            
+
             campFunCod.setEnabled(false);
             campDeGastos.setEnabled(false);
-            campAteGastos.setEnabled(false);            
+            campAteGastos.setEnabled(false);
             campFunNome.setEnabled(false);
             campNomeDep.setEnabled(false);
-            
-        } 
+
+        }
     }//GEN-LAST:event_radio2ActionPerformed
 
     private void radio3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio3ActionPerformed
         // TODO add your handling code here:
-        if (radio3.isSelected()){
+        if (radio3.isSelected()) {
             campNomeDep.setEnabled(radio3.isSelected());
-            
+
             campAteSal.setEnabled(false);
             campDeSal.setEnabled(false);
             campFunCod.setEnabled(false);
             campDeGastos.setEnabled(false);
-            campAteGastos.setEnabled(false);            
+            campAteGastos.setEnabled(false);
             campFunNome.setEnabled(false);
-        } 
-        
+        }
+
     }//GEN-LAST:event_radio3ActionPerformed
 
     private void radio4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio4ActionPerformed
         // TODO add your handling code here:
-        if (radio4.isSelected()){
+        if (radio4.isSelected()) {
             campFunNome.setEnabled(radio4.isSelected());
-            
+
             campNomeDep.setEnabled(false);
             campAteSal.setEnabled(false);
             campDeSal.setEnabled(false);
             campFunCod.setEnabled(false);
             campDeGastos.setEnabled(false);
-            campAteGastos.setEnabled(false);            
+            campAteGastos.setEnabled(false);
 
-        } 
+        }
     }//GEN-LAST:event_radio4ActionPerformed
 
     private void campDeGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campDeGastosActionPerformed
@@ -442,76 +485,76 @@ public class IURelatorioPesquisa extends javax.swing.JFrame {
 
     private void campDeGastosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campDeGastosKeyReleased
         // TODO add your handling code here:
-          if (campDeGastos.getText().length()>0){
-                btnMostrarRelatorio.setEnabled(true);
-                campAteGastosKeyReleased(evt);
-            } else if (campDeGastos.getText().length()<= 0) {
-                btnMostrarRelatorio.setEnabled(false);
-            }
-        
-        
+        if (campDeGastos.getText().length() > 0) {
+            btnMostrarRelatorio.setEnabled(true);
+            campAteGastosKeyReleased(evt);
+        } else if (campDeGastos.getText().length() <= 0) {
+            btnMostrarRelatorio.setEnabled(false);
+        }
+
+
     }//GEN-LAST:event_campDeGastosKeyReleased
 
     private void campAteGastosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campAteGastosKeyReleased
         // TODO add your handling code here:
-        
-        if (campAteGastos.getText().length()>0){
-                btnMostrarRelatorio.setEnabled(true);
-            } else if (campAteGastos.getText().length()<= 0) {
-                btnMostrarRelatorio.setEnabled(false);
+
+        if (campAteGastos.getText().length() > 0) {
+            btnMostrarRelatorio.setEnabled(true);
+        } else if (campAteGastos.getText().length() <= 0) {
+            btnMostrarRelatorio.setEnabled(false);
         }
     }//GEN-LAST:event_campAteGastosKeyReleased
 
     private void campDeSalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campDeSalKeyReleased
         // TODO add your handling code here:
-        if (campDeSal.getText().length()>0){
-                btnMostrarRelatorio.setEnabled(true);
-                campAteSalKeyReleased(evt);
-            } else if (campDeSal.getText().length()<= 0) {
-                btnMostrarRelatorio.setEnabled(false);
-            }
+        if (campDeSal.getText().length() > 0) {
+            btnMostrarRelatorio.setEnabled(true);
+            campAteSalKeyReleased(evt);
+        } else if (campDeSal.getText().length() <= 0) {
+            btnMostrarRelatorio.setEnabled(false);
+        }
     }//GEN-LAST:event_campDeSalKeyReleased
 
     private void campAteSalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campAteSalKeyReleased
         // TODO add your handling code here:
-        if (campAteSal.getText().length()>0){
-                btnMostrarRelatorio.setEnabled(true);
-            } else if (campAteSal.getText().length()<= 0) {
-                btnMostrarRelatorio.setEnabled(false);
+        if (campAteSal.getText().length() > 0) {
+            btnMostrarRelatorio.setEnabled(true);
+        } else if (campAteSal.getText().length() <= 0) {
+            btnMostrarRelatorio.setEnabled(false);
         }
     }//GEN-LAST:event_campAteSalKeyReleased
 
     private void campNomeDepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campNomeDepKeyReleased
         // TODO add your handling code here:
-        if (campNomeDep.getText().length()>0){
-                btnMostrarRelatorio.setEnabled(true);
-            } else if (campNomeDep.getText().length()<= 0) {
-                btnMostrarRelatorio.setEnabled(false);
+        if (campNomeDep.getText().length() > 0) {
+            btnMostrarRelatorio.setEnabled(true);
+        } else if (campNomeDep.getText().length() <= 0) {
+            btnMostrarRelatorio.setEnabled(false);
         }
     }//GEN-LAST:event_campNomeDepKeyReleased
 
     private void campFunNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campFunNomeKeyReleased
         // TODO add your handling code here:
-        if (campFunNome.getText().length()>0){
-                btnMostrarRelatorio.setEnabled(true);
-            } else if (campFunNome.getText().length()<= 0) {
-                btnMostrarRelatorio.setEnabled(false);
+        if (campFunNome.getText().length() > 0) {
+            btnMostrarRelatorio.setEnabled(true);
+        } else if (campFunNome.getText().length() <= 0) {
+            btnMostrarRelatorio.setEnabled(false);
         }
     }//GEN-LAST:event_campFunNomeKeyReleased
 
     private void campFunCodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campFunCodKeyReleased
         // TODO add your handling code here:
-        if (campFunCod.getText().length()>0){
-                btnMostrarRelatorio.setEnabled(true);
-            } else if (campFunCod.getText().length()<= 0) {
-                btnMostrarRelatorio.setEnabled(false);
+        if (campFunCod.getText().length() > 0) {
+            btnMostrarRelatorio.setEnabled(true);
+        } else if (campFunCod.getText().length() <= 0) {
+            btnMostrarRelatorio.setEnabled(false);
         }
     }//GEN-LAST:event_campFunCodKeyReleased
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
         textRelatorios.setText("");
-        
+
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
